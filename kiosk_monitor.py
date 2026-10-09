@@ -101,8 +101,8 @@ def run_kiosk(camera_source=0):
                     subtitle = f"MARKED: {rec.get('status', 'Present').upper()}"
                 else:
                     # Already marked today
-                    status_color = (255, 200, 0) # Cyan/Blue
-                    subtitle = f"LOGGED @ {today_rec['time']}"
+                    status_color = (0, 165, 255) # Orange warning
+                    subtitle = f"ALREADY MARKED @ {today_rec['time']}"
 
                 frame = face_engine.FaceEngine.draw_face_hud(
                     frame, face, user_name, subtitle, status_color=status_color, confidence_pct=confidence_pct

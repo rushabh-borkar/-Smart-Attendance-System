@@ -175,7 +175,7 @@ def record_attendance(user_id: int, confidence: float = 1.0, snapshot_path: str 
     # Check if already marked today
     existing = check_attendance_today(user_id)
     if existing:
-        return False, f"Attendance already recorded today at {existing['time']}.", existing
+        return False, f"Already marked present today at {existing['time']}!", existing
 
     # Check late cutoff
     late_cutoff = get_setting("late_cutoff", DEFAULT_LATE_CUTOFF_TIME)

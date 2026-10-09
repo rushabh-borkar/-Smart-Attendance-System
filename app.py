@@ -177,9 +177,10 @@ if menu == "📸 Live Attendance":
                                 st.success(f"🎉 **Welcome, {user_name}!** {msg} (Confidence: {confidence_pct:.1f}%)")
                             else:
                                 # Already marked today
-                                status_color = (255, 200, 0) # Cyan/Blue
-                                subtitle = "ALREADY RECORDED"
-                                st.info(f"ℹ️ **{user_name}**: {msg}")
+                                status_color = (0, 165, 255) # Orange warning
+                                subtitle = "ALREADY MARKED TODAY"
+                                marked_time = rec.get("time", "")
+                                st.warning(f"⚠️ **{user_name} ({user_code})**: Already marked present today at {marked_time}!")
 
                             display_img = face_engine.FaceEngine.draw_face_hud(
                                 display_img, face, user_name, subtitle, status_color=status_color, confidence_pct=confidence_pct
@@ -318,7 +319,7 @@ elif menu == "📊 Attendance Logs & Analytics":
         f_col1, f_col2, f_col3, f_col4 = st.columns(4)
         
         with f_col1:
-            start_date = st.date_input("Start Date", value=datetime.date.today() - datetime.timedelta(days=7))
+            start_date = st.date_input("Start Date", value=datetime.date.today())
         with f_col2:
             end_date = st.date_input("End Date", value=datetime.date.today())
         with f_col3:
