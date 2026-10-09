@@ -279,5 +279,16 @@ def get_absent_users_today() -> List[Dict[str, Any]]:
     conn.close()
     return rows
 
+def clear_today_attendance() -> int:
+    """Clears attendance entries only for the current day."""
+    today_str = datetime.date.today().isoformat()
+    conn = get_connection()
+    cursor = conn.cursor()
+    cursor.execute("DELETE FROM attendance WHERE date = ?", (today_str,))
+    deleted = cursor.rowcount
+    conn.commit()
+    conn.close()
+    return deleted
+
 # Initialize DB on load
 init_db()

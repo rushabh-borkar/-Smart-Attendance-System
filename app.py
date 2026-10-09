@@ -199,7 +199,15 @@ if menu == "📸 Live Attendance":
                     st.image(rgb_preview, caption="Detection Analysis & Verification", use_container_width=True)
 
     with right_col:
-        st.subheader("📋 Today's Live Attendance Feed")
+        feed_hdr, reset_btn_col = st.columns([2, 1])
+        with feed_hdr:
+            st.subheader("📋 Today's Live Feed")
+        with reset_btn_col:
+            if st.button("🔄 Clear Today", help="Clear today's logs for a fresh live demo"):
+                deleted_cnt = database.clear_today_attendance()
+                st.toast(f"Today's feed reset ({deleted_cnt} records cleared).")
+                st.rerun()
+
         if today_records:
             df_today = pd.DataFrame(today_records)[["time", "user_code", "full_name", "department", "status"]]
             df_today.columns = ["Time", "ID", "Name", "Department", "Status"]
@@ -212,7 +220,7 @@ if menu == "📸 Live Attendance":
                 height=380
             )
         else:
-            st.info("No attendance recorded yet today. Check-ins will appear here in real-time.")
+            st.info("ℹ️ No attendance recorded yet today. Only people who are marked present will appear here.")
 
         st.caption("🚀 Looking for high-speed 60 FPS kiosk mode? You can also run `python kiosk_monitor.py` for continuous webcam monitoring!")
 
