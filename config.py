@@ -22,8 +22,8 @@ YUNET_URL = "https://github.com/opencv/opencv_zoo/raw/main/models/face_detection
 SFACE_URL = "https://github.com/opencv/opencv_zoo/raw/main/models/face_recognition_sface/face_recognition_sface_2021dec.onnx"
 
 # AI Recognition Thresholds
-# SFace Cosine similarity threshold: higher means stricter match. Standard is 0.363 - 0.40
-DEFAULT_SIMILARITY_THRESHOLD = 0.38
+# SFace Cosine similarity threshold: higher means stricter match. Standard is 0.34 - 0.37 (optimal 0.35)
+DEFAULT_SIMILARITY_THRESHOLD = 0.35
 CONFIDENCE_DETECTION_THRESHOLD = 0.65
 
 # Attendance Business Rules
